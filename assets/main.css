@@ -1,0 +1,7 @@
+.command-cursor {
+    left: 100%;
+    position: absolute;
+    width: 3px;
+    height: 100px;
+    background: red;
+}

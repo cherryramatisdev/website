@@ -21,7 +21,7 @@ Welcome to my portfolio honey! Here's the possible commands you can run:
 whoami : E.Element Msg
 whoami =
     let
-        src =  "/me.png"
+        src =  "img/me.png"
         -- TODO: Improve this description message
         description =  "A cartoon pixelated"
         aboutMe = ["Name: Cherry Ramatis", "Job: Web Developer @ iFood", "Languages that I like: Elm, Ruby, Elixir"]
@@ -29,5 +29,5 @@ whoami =
     E.row [E.spacing 10] [
      E.image [ E.width (E.fill |> E.maximum 300), E.height (E.fill |> E.maximum 300) ] { src = src , description = description }
     , E.column [E.alignTop] (List.map (\content -> E.el [EF.color (E.rgb 255 255 255)] (E.text content)) aboutMe)
-    
+
      ]

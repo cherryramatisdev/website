@@ -4,13 +4,13 @@ import AppTypes exposing (Model, Msg(..), Output(..))
 import Browser
 import Browser.Dom as Dom
 import Browser.Events as BE
-import CommandOutputMessages as OutputMessages
 import Components.Container
 import Components.Prompt
 import Element as E
 import Element.Font as EF
 import Html as H
 import Json.Decode as Decode
+import CommandParser exposing (parse)
 import Task
 
 
@@ -38,10 +38,6 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         CommandChanged content ->
-            let
-                _ =
-                    Debug.log content
-            in
             ( { model | command = content }, Cmd.none )
 
         FocusInput ->
@@ -51,14 +47,7 @@ update msg model =
 
         KeyPress content ->
             case content of
-                "Enter" ->
-                    case Debug.log "command" model.command of
-                        "help" ->
-                            ( { model | output = Just (Text OutputMessages.help) }, Cmd.none )
-
-                        _ ->
-                            ( { model | output = Just (Text "Command not found") }, Cmd.none )
-
+                "Enter" -> (parse model.command model, Cmd.none)
                 _ ->
                     ( model, Cmd.none )
 
@@ -83,6 +72,8 @@ view model =
         , case model.output of
             Just (Text output) ->
                 E.el [ EF.color (E.rgb 255 255 255) ] (E.text output)
+
+            Just (Element el) -> el
 
             Nothing ->
                 E.none

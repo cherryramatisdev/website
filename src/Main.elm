@@ -1,69 +1,89 @@
-module Main exposing (main)
+port module Main exposing (main)
 
+import AppTypes exposing (Model, Msg(..), Output(..))
 import Browser
+import Browser.Dom as Dom
+import Browser.Events as BE
+import CommandOutputMessages as OutputMessages
+import Components.Container
+import Components.Prompt
 import Element as E
-import Element.Background as B
-import Element.Border as Border
-import Element.Font as F
-import Element.Input as I
-import Html exposing (Html)
-import Html.Attributes
+import Element.Font as EF
+import Html as H
+import Json.Decode as Decode
+import Task
+
+
+port sendKeyPress : String -> Cmd msg
 
 
 main : Program () Model Msg
 main =
-    Browser.sandbox
+    Browser.element
         { init = init
         , view = view
         , update = update
+        , subscriptions = subscriptions
         }
 
 
-type alias Model =
-    { command : String }
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( { command = "", output = Nothing }
+    , Task.attempt (\_ -> NoOp) (Dom.focus "prompt")
+    )
 
 
-init : Model
-init =
-    { command = "" }
-
-
-type Msg
-    = CommandChanged String
-
-
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        CommandChanged text ->
-            { model | command = String.replace "$ " "" text }
+        CommandChanged content ->
+            let
+                _ =
+                    Debug.log content
+            in
+            ( { model | command = content }, Cmd.none )
+
+        FocusInput ->
+            ( model
+            , Task.attempt (\_ -> NoOp) (Dom.focus "prompt")
+            )
+
+        KeyPress content ->
+            case content of
+                "Enter" ->
+                    case Debug.log "command" model.command of
+                        "help" ->
+                            ( { model | output = Just (Text OutputMessages.help) }, Cmd.none )
+
+                        _ ->
+                            ( { model | output = Just (Text "Command not found") }, Cmd.none )
+
+                _ ->
+                    ( model, Cmd.none )
+
+        NoOp ->
+            ( model, Cmd.none )
 
 
-view : Model -> Html.Html Msg
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    let
+        keyDecoder : Decode.Decoder Msg
+        keyDecoder =
+            Decode.map KeyPress (Decode.field "key" Decode.string)
+    in
+    BE.onKeyDown keyDecoder
+
+
+view : Model -> H.Html Msg
 view model =
-    layout_el
-        [ E.row [ E.htmlAttribute (Html.Attributes.style "position" "relative") ]
-            [ E.el [ F.color (E.rgb 255 255 255) ]
-                (I.text [ B.color (E.rgba 0 0 0 0), Border.width 0 ]
-                    { onChange = CommandChanged
-                    , text = "$ " ++ model.command
-                    , placeholder = Just (I.placeholder [] (E.text "hello world"))
-                    , label = I.labelAbove [] (E.text "hello world")
-                    }
-                )
-            , E.html (Html.div [ Html.Attributes.class "command-cursor" ] [])
-            ]
-        ]
-        |> E.layout []
+    Components.Container.view
+        [ Components.Prompt.view model
+        , case model.output of
+            Just (Text output) ->
+                E.el [ EF.color (E.rgb 255 255 255) ] (E.text output)
 
-
-layout_el : List (E.Element msg) -> E.Element msg
-layout_el els =
-    E.column
-        [ B.color (E.rgb 0 0 0)
-        , E.width E.fill
-        , E.height E.fill
-        , E.alignTop
-        , E.spacing 30
+            Nothing ->
+                E.none
         ]
-        els

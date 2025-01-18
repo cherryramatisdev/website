@@ -3,5 +3,4 @@ import elm from 'vite-plugin-elm-watch'
 
 export default defineConfig({
   plugins: [elm()],
-  publicDir: 'assets',
 })

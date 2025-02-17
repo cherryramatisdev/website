@@ -4,13 +4,13 @@ import AppTypes exposing (Model, Msg(..), Output(..))
 import Browser
 import Browser.Dom as Dom
 import Browser.Events as BE
+import CommandParser exposing (parse)
 import Components.Container
 import Components.Prompt
 import Element as E
 import Element.Font as EF
-import Html as H
+import Html as H exposing (output)
 import Json.Decode as Decode
-import CommandParser exposing (parse)
 import Task
 
 
@@ -47,7 +47,9 @@ update msg model =
 
         KeyPress content ->
             case content of
-                "Enter" -> (parse model.command model, Cmd.none)
+                "Enter" ->
+                    ( parse model.command model, Cmd.none )
+
                 _ ->
                     ( model, Cmd.none )
 
@@ -71,9 +73,23 @@ view model =
         [ Components.Prompt.view model
         , case model.output of
             Just (Text output) ->
-                E.el [ EF.color (E.rgb 255 255 255) ] (E.text output)
+                E.el
+                    [ E.width E.fill
+                    , E.height E.fill
+                    , EF.color (E.rgb 255 255 255)
+                    ]
+                    (E.paragraph [] [ E.text output ])
 
-            Just (Element el) -> el
+            Just (Texts content) ->
+                E.el
+                    [ E.width E.fill
+                    , E.height E.fill
+                    , EF.color (E.rgb 255 255 255)
+                    ]
+                    (E.column [] (List.map E.text content))
+
+            Just (Element el) ->
+                el
 
             Nothing ->
                 E.none

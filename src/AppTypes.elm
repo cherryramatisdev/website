@@ -5,6 +5,7 @@ import Element exposing (Element)
 
 type Output
     = Text String
+    | Texts (List String)
     | Element (Element Msg)
 
 

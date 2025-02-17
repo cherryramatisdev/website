@@ -22,7 +22,7 @@ whoami =
     let
         src : String
         src =
-            "img/me.png"
+            "/website/img/me.png"
 
         -- TODO: Improve this description message
         description : String

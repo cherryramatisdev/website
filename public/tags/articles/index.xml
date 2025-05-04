@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Articles on Terminal</title>
+    <link>http://localhost:1313/tags/articles/</link>
+    <description>Recent content in Articles on Terminal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 03 May 2025 06:10:46 -0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hello world articles hello world</title>
+      <link>http://localhost:1313/posts/20250503054728-hello_world_articles/</link>
+      <pubDate>Sat, 03 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/20250503054728-hello_world_articles/</guid>
+      <description>&lt;p&gt;Hello world! I&amp;rsquo;ll be posting smaller and (hopefully) more frequent articles here :) it&amp;rsquo;s a pleasure to have you here&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

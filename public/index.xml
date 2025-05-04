@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cherry&#39;s Blog</title>
+    <link>//localhost:1313/</link>
+    <description>Recent content on Cherry&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>//localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/about/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/86631177/212934124-15c3ef0a-9a48-4a00-af39-8e0d8a89c4f4.gif&#34; alt=&#34;princess-bubble-gum-388429236&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;(better description wip)&amp;hellip;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;🔭 I’m currently working as a frontend developer @ iFood&lt;/li&gt;&#xA;&lt;li&gt;💜 I&amp;rsquo;m a proud member of the best community &lt;a href=&#34;https://github.com/he4rt&#34;&gt;He4rt&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;🤝 I love to write about ruby and other stuffs I&amp;rsquo;m using at &lt;a href=&#34;https://dev.to/cherryramatis/&#34;&gt;Dev to&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;💬 Ask me about vim, emacs, automation, scripting, ruby, lisp, etc&amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;⚡ Fun fact I can type 118 words per minute&lt;/li&gt;&#xA;&lt;li&gt;📫 How to reach me: &lt;a href=&#34;https://www.linkedin.com/in/cherryramatis/&#34;&gt;Linkedin&lt;/a&gt; or &lt;a href=&#34;mailto:cherry.ramatis&amp;#43;contact@gmail.com&#34;&gt;Email&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;🏳️‍⚧️ Pronouns: She/Her Ela/Dela&lt;/li&gt;&#xA;&lt;li&gt;🗣️ Languages that i speak: Brazilian Portuguese (Native) and English&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

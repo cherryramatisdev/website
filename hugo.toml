@@ -1,0 +1,44 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  contentTypeName = "posts"
+  showMenuItems = 2
+  fullWidthTheme = false
+  centerTheme = false
+
+[languages]
+  [languages.en]
+    title = "Cherry's Blog"
+    subtitle = "My blog"
+    keywords = ""
+    copyright = ""
+
+    [languages.en.params]
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "Cherry's Blog"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+        
+[module]
+  # this is needed when you fetch the theme as a submodule to your repo.
+  # replacements = "github.com/panr/hugo-theme-terminal/4 -> themes/terminal"
+[[module.imports]]
+  path = 'github.com/panr/hugo-theme-terminal/v4'

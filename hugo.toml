@@ -1,6 +1,7 @@
 baseURL = '/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
+theme = ["github.com/panr/hugo-theme-terminal/v4"]
 
 [outputs]
   home = ['html', 'rss']
@@ -22,8 +23,8 @@ title = 'My New Hugo Site'
 [params]
   contentTypeName = "posts"
   showMenuItems = 2
-  fullWidthTheme = false
-  centerTheme = false
+  fullWidthTheme = true
+  centerTheme = true
 
 [languages]
   [languages.en]

@@ -2,6 +2,16 @@ baseURL = '/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 
+[outputs]
+  home = ['html', 'rss']
+  section = ['html', 'rss']
+  taxonomy = ['html']
+  term = ['html']
+
+[services]
+  [services.rss]
+    limit = 42
+
 [caches]
   [caches.images]
     dir = ':cacheDir/images'

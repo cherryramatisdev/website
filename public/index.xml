@@ -6,7 +6,16 @@
     <description>Recent content on Cherry&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
+    <lastBuildDate>Sun, 04 May 2025 15:28:59 -0300</lastBuildDate>
     <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>  (format t &#34;Hello World~%&#34;)
+  </title>
+      <link>//localhost:1313/posts/hello-world/</link>
+      <pubDate>Sun, 04 May 2025 15:18:00 -0300</pubDate>
+      <guid>//localhost:1313/posts/hello-world/</guid>
+      <description>&lt;p&gt;Nice that you&amp;rsquo;re here! I&amp;rsquo;ll be trying to post both &lt;code&gt;personal&lt;/code&gt; and &lt;code&gt;tech&lt;/code&gt; related stuff, the idea is to keep me writing more constantly.&lt;/p&gt;</description>
+    </item>
     <item>
       <title></title>
       <link>//localhost:1313/about/</link>

@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Cherry&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 04 May 2025 15:28:59 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 25 Aug 2025 11:25:34 -0300</lastBuildDate>
     <atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>  (format t &#34;Hello World~%&#34;)
@@ -15,6 +15,13 @@
       <pubDate>Sun, 04 May 2025 15:18:00 -0300</pubDate>
       <guid>//localhost:1313/posts/hello-world/</guid>
       <description>&lt;p&gt;Nice that you&amp;rsquo;re here! I&amp;rsquo;ll be trying to post both &lt;code&gt;personal&lt;/code&gt; and &lt;code&gt;tech&lt;/code&gt; related stuff, the idea is to keep me writing more constantly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Native Fuzzy Finder in Neovim With Lua and Cool Bindings</title>
+      <link>//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</link>
+      <pubDate>Mon, 25 Aug 2025 11:25:34 -0300</pubDate>
+      <guid>//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</guid>
+      <description>&lt;p&gt;Since I read a particular &lt;a href=&#34;https://yobibyte.github.io/vim.html&#34;&gt;blog post by yobibyte&lt;/a&gt; about a minimalist approach to neovim configuration I started to think more about how much stuff do I really need for my config to work properly. This is my current state where i&amp;rsquo;m trying to remove as much plugins as possible and use more native behaviors from latest neovim and I hope my recent findings about fuzzy finding can be useful to you reading!&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

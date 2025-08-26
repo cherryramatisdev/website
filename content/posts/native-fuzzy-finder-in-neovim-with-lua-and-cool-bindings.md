@@ -1,7 +1,6 @@
 +++
 title = "Native Fuzzy Finder in Neovim With Lua and Cool Bindings"
 date = "2025-08-25T11:25:34-03:00"
-dateFormat = "02/01/2006"
 author = ["Cherry Ramatis"]
 tags = ["nvim", "tech"]
 keywords = ["nvim", "fuzzy", "finder"]

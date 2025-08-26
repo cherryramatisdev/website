@@ -1,6 +1,6 @@
 baseURL = '/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = "Cherry's Blog"
 theme = ["github.com/panr/hugo-theme-terminal/v4"]
 
 [outputs]

@@ -6,7 +6,7 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Built a native fuzzy finder in neovim to remove yet another plugin and enjoy the latest goods shipped to the main branch." />
+<meta name="description" content="I built a native fuzzy finder in Neovim to remove yet another plugin and enjoy the latest goods shipped to the main branch." />
 <meta name="keywords" content="nvim, fuzzy, finder" />
 
   <meta name="robots" content="noodp" />
@@ -73,7 +73,7 @@
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Native Fuzzy Finder in Neovim With Lua and Cool Bindings">
-<meta property="og:description" content="Built a native fuzzy finder in neovim to remove yet another plugin and enjoy the latest goods shipped to the main branch." />
+<meta property="og:description" content="I built a native fuzzy finder in Neovim to remove yet another plugin and enjoy the latest goods shipped to the main branch." />
 <meta property="og:url" content="//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/" />
 <meta property="og:site_name" content="Cherry&#39;s Blog" />
 
@@ -154,7 +154,7 @@
   <h1 class="post-title">
     <a href="//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/">Native Fuzzy Finder in Neovim With Lua and Cool Bindings</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2025-08-25</time><span class="post-author">[Cherry Ramatis]</span><span class="post-reading-time">8 min read (1595 words)</span></div>
+  <div class="post-meta"><time class="post-date">2025-08-25</time><span class="post-author">[Cherry Ramatis]</span><span class="post-reading-time">11 min read (2174 words)</span></div>
 
   
     <span class="post-tags">
@@ -171,10 +171,11 @@
   
 
   <div class="post-content"><div>
-        <p>Since I read a particular <a href="https://yobibyte.github.io/vim.html">blog post by yobibyte</a> about a minimalist approach to neovim configuration I started to think more about how much stuff do I really need for my config to work properly, particularly the main reason why I resonate so much with a particular family of editors (vim, nvim, kakoune, emacs, etc) is the ability to remove as much bloat as you want, keeping only the powerful features that make sense <strong>to you</strong>. It&rsquo;s totally fine to use a neovim distro on the beginning of your journey, but give a chance to start piece by piece, you&rsquo;ll be amazed by how few things you actually need to write and code at your best (If you&rsquo;re interested in this discussion I highly recommend taking a look at the <a href="https://www.youtube.com/watch?v=QMVIJhC9Veg">PDE concept coined by teej_dv</a>.</p>
+        <p>Recently, I read a particular <a href="https://yobibyte.github.io/vim.html">blog post by yobibyte</a> about a no-plugins approach to Neovim configuration, which stuck with me. I started to think more and more about how much stuff I really need for my config to suit my needs. Personally, the main reason why I resonate so much with a particular family of editors (Vim, Nvim, Kakoune, Emacs, etc.) is the ability to add as much stuff as you want, but at the same time the opportunity to remove as much bloat as possible—a little controversial, but if you think about it, it&rsquo;s the best scenario for customizability. I remember watching a video about the concept of a <a href="https://www.youtube.com/watch?v=QMVIJhC9Veg">PDE</a> coined by a Neovim contributor called teej_dv, and it really stuck with me. These types of editors are more like an environment than just a product with a single goal.</p>
+<p>Well, this is the exact situation I&rsquo;m currently in, trying to experiment with native functions from Neovim and writing tiny wrappers around them instead of using plugins that recreate the whole UX. I hope you find this particular &ldquo;wrapper&rdquo; useful for your workflow. :)</p>
 <blockquote>
-<p>First things first, it&rsquo;s important to point out that I&rsquo;m using neovim nightly built from source, this is important because we need two particular patches to make all this work properly, which is this the <a href="https://github.com/vim/vim/pull/17806">vim patch adding wildtrigger() function for cmdline completion</a> (<a href="https://github.com/neovim/neovim/pull/35022">neovim equivalent</a>) and the <a href="https://github.com/vim/vim/pull/15976">vim patch adding findfunc as a option</a> (<a href="https://github.com/zeertzjq/neovim/commit/24d448aeb6cbbe12bb85c7eec3ee0201336b19fa">neovim equivalent</a>).</p></blockquote>
-<p>This is the whole module I have at <code>plugin/cmdline.lua</code> for you to copy, we&rsquo;ll break up piece by piece:</p>
+<p>First things first, it&rsquo;s important to point out that I&rsquo;m using neovim nightly, this is important because we need two particular patches to make all this work properly, which is this the <a href="https://github.com/vim/vim/pull/17806">vim patch adding wildtrigger() function for cmdline completion</a> (<a href="https://github.com/neovim/neovim/pull/35022">neovim equivalent</a>) and the <a href="https://github.com/vim/vim/pull/15976">vim patch adding findfunc as a option</a> (<a href="https://github.com/neovim/neovim/pull/31058">neovim equivalent</a>). If at the time you&rsquo;re reading this post those patches are already available at stable version, you don&rsquo;t need to worry with building from source.</p></blockquote>
+<p>For the ones with a practical sense, this is the whole module I have at <code>plugin/cmdline.lua</code> for you to copy and try for yourself. Throughout this blog post, we&rsquo;ll break up piece by piece how it works.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> vim.fn.executable <span style="color:#e6db74">&#34;rg&#34;</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_G</span>.<span style="color:#a6e22e">RgFindFiles</span>(cmdarg, _cmdcomplete)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">local</span> fnames <span style="color:#f92672">=</span> vim.fn.systemlist(<span style="color:#e6db74">&#39;rg --files --hidden --color=never --glob=&#34;!.git&#34;&#39;</span>)
@@ -241,11 +242,18 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Edit the dir for the path&#39;</span> })
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-v&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;vs&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :vs&#39;</span> })
-</span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-s&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;sp&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :vs&#39;</span> })
-</span></span></code></pre></div><p>And here is a demo showing up all the features:</p>
+</span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-s&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;sp&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :sp&#39;</span> })
+</span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-t&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;tabe&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :tabe&#39;</span> })
+</span></span></code></pre></div><p>And here is a demo showing off all the features available:</p>
+<blockquote>
+<p>Disclaimer: The screenkey plugin here is a bit laggy so consider referencing the keybinds with the code block above if something was confusing.</p></blockquote>
 <p><a href="https://asciinema.org/a/735657"><img src="https://asciinema.org/a/735657.svg" alt="demo"></a></p>
 <h2 id="breaking-up-piece-by-piece">Breaking up piece by piece<a href="#breaking-up-piece-by-piece" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>OK, now let&rsquo;s dive in piece by piece. The first thing the should drag your eyes is the <code>findfunc</code> piece, this part is responsible for making the <code>:find</code> command useful in large codebases, with this option we can provide a function that return a list of strings and match as the user type a substring. For our implementation we use exclusively <code>rg --files</code> to get our file list fast and them proceed to fuzzy match using the native vim function <code>matchfuzzy</code>.</p>
+<p>OK! Time to dive into this module. The first feature that honestly made all this even possible is the simplest to explain: the <code>findfunc</code> option. This patch was merged into Neovim in November 2024 from a Vim patch and introduced the possibility of customizing how the editor searched files using the <code>:find</code> cmd.</p>
+<p>Historically, Vim users that wanted a more native file finder were using a rather hacky trick that consisted of configuring the <code>path</code> option with a glob pattern like this: <code>set path+=**</code>. By adding this, the <code>:find</code> command could expand to the whole project structure to find a file. The problem? Performance: It&rsquo;s quite slow using the GNU find binaries in large codebases.</p>
+<p>But with <code>findfunc</code>, we can make this command use faster binaries like <code>fd</code>, <code>rg</code> or even using our favorite VCS like <code>git ls-files</code> to increase the initial performance hit of loading the files. Basically, we have a functional file finder now! Yay!</p>
+<p>All this is nice, but it&rsquo;s missing one important piece to the function: fuzzy matching. You know, that thing that makes the telescope plugin really shine, that allows you to type roughly the file name and still get the correct matches? We can achieve this by using the <code>matchfuzzy</code> to further filter the options as the user types.</p>
+<p>This sums up our first function:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_G</span>.<span style="color:#a6e22e">RgFindFiles</span>(cmdarg, _cmdcomplete)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> fnames <span style="color:#f92672">=</span> vim.fn.systemlist(<span style="color:#e6db74">&#39;rg --files --hidden --color=never --glob=&#34;!.git&#34;&#39;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">#</span>cmdarg <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">then</span>
@@ -256,11 +264,11 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>vim.o.findfunc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;v:lua.RgFindFiles&#39;</span>
-</span></span></code></pre></div><p>As you can see, the <code>cmdarg</code> is the substring typed by the user so we check if it exists or not, if it does we fuzzy match and if not we just return the full list of files (that happens when the user first type <code>:find &lt;tab&gt;</code>).</p>
-<blockquote>
-<p>I personally didn&rsquo;t understand the <code>cmdcomplete</code> purpose. It&rsquo;s a boolean parameter and I didn&rsquo;t get the utility from the help pages, if you understood feel free to reach out ^^. For this particular use case it&rsquo;s ok to just ignore it though.</p></blockquote>
+</span></span></code></pre></div><p>As you can see, the <code>cmdarg</code> is the substring typed by the user (it&rsquo;s nil when the user didn&rsquo;t type anything). For this function, we separate into returning the whole list of files when the user hasn&rsquo;t typed anything yet and returning the fuzzy matched list according to the substring provided. The function will be called every time the user manually presses the <code>&lt;tab&gt;</code> key, and all the details regarding the limit of items shown and navigation are dealt with by the <code>wildmenu</code> option (you can find more about it with <code>:h wildmenu</code>)</p>
 <hr>
-<p>Now for the cmdline autocompletion bit we&rsquo;ll be using the new <code>wildtrigger()</code> function and enable only for some commands, if you want to enable the autocompletion for any cmdline interaction just use the simpler version of it:</p>
+<p>Nice! We now have tab-completed fuzzy finding; let&rsquo;s spice things up with ✨ autocompletion ✨. I&rsquo;m not a particular fan of autocompletion when I&rsquo;m typing on a buffer, but it certainly fits perfectly when filtering file paths.</p>
+<p>For this to be possible comes our second patch that introduced the <code>wildtrigger()</code> function. It is quite simple in theory: it triggers completion programmatically when on the cmdline, it works for commands like <code>/</code> <code>:s</code> and, of course, <code>:find</code>. When combined with the autocmd event <code>CmdlineChanged</code> we can programmatically trigger the completion every time we type a character into the cmdline, cool, right?</p>
+<p>The simplest version of this behavior can be declared as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#e6db74">&#39;CmdlineChanged&#39;</span> }, {
 </span></span><span style="display:flex;"><span>    pattern <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#39;*&#39;</span> },
 </span></span><span style="display:flex;"><span>    group <span style="color:#f92672">=</span> vim.api.nvim_create_augroup(<span style="color:#e6db74">&#39;CmdlineAutocompletion&#39;</span>, { clear <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> }),
@@ -270,7 +278,10 @@
 </span></span><span style="display:flex;"><span>        vim.fn.wildtrigger()
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div><p>This <code>wildmode</code> option used here is important to not select the first option even if it&rsquo;s active (with this option, the option will be selected only by pressing <code>&lt;tab&gt;</code>). You can find the whole explanation into `:h wildmode'</p>
+</span></span></code></pre></div><blockquote>
+<p>You can move the <code>wildmenu</code> and <code>wildmode</code> configuration outside the autocmd without any problems, we&rsquo;re just containing more in favor of control and simplicity.</p></blockquote>
+<p>Together with the <code>wildtrigger</code> function being called on every change, we have a neat setting being placed here: the <code>wildmode</code>. This option is important because it allows us to not immediately insert the first option when the completion popup appears; it&rsquo;s similar to what we set in <code>completeopt</code> to configure buffer autocompletion frameworks like <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a>.</p>
+<p>For context, let&rsquo;s take a look into the full description for this option from the help pages:</p>
 <pre tabindex="0"><code class="language-help" data-lang="help">&#34;full&#34;	            Complete the next full match.  Cycles through all
                     matches, returning to the original input after the
                     last match.  If &#39;wildmenu&#39; is enabled, it will be
@@ -280,21 +291,17 @@
 				    if it is active.  When completing buffers,
 				    sort them by most recently used (excluding the
 				    current buffer).
-</code></pre><p>For our full implementation we&rsquo;re just adding a layer to enable this behavior when we&rsquo;re on particular commands and disable when we leave the cmdline mode.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">is_cmdline_type_find</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> cmdline_cmd <span style="color:#f92672">=</span> vim.fn.split(vim.fn.getcmdline(), <span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#ae81ff">1</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;find&#39;</span> <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;fin&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#e6db74">&#39;CmdlineChanged&#39;</span>, <span style="color:#e6db74">&#39;CmdlineLeave&#39;</span> }, {
+</code></pre><p>This is already our full feature of fuzzy finding with autocomplete! Further on in this article, we&rsquo;ll write keymaps around the cmdline mode to improve the UX, shall we? :)</p>
+<p>First let&rsquo;s constrain this autocomplete to work on specific commands. This is particularly useful to me because I don&rsquo;t want autocompletion in commands like <code>:edit</code>, just on the ones important to fuzzy finding (in this case, <code>:help</code> and <code>:find</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#e6db74">&#39;CmdlineChanged&#39;</span>, <span style="color:#e6db74">&#39;CmdlineLeave&#39;</span> }, {
 </span></span><span style="display:flex;"><span>    pattern <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#39;*&#39;</span> },
 </span></span><span style="display:flex;"><span>    group <span style="color:#f92672">=</span> vim.api.nvim_create_augroup(<span style="color:#e6db74">&#39;CmdlineAutocompletion&#39;</span>, { clear <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> }),
 </span></span><span style="display:flex;"><span>    callback <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(ev)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">should_enable_autocomplete</span>()
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">local</span> cmdline_cmd <span style="color:#f92672">=</span> vim.fn.split(vim.fn.getcmdline(), <span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#ae81ff">1</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> is_cmdline_type_find() <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;help&#39;</span> <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;h&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">-- NOTE: Here your can add any other variant that you commonly type to abbreviate the command. :)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;find&#39;</span> <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;fin&#39;</span> <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;help&#39;</span> <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;h&#39;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ev.event <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;CmdlineChanged&#39;</span> <span style="color:#f92672">and</span> should_enable_autocomplete() <span style="color:#66d9ef">then</span>
@@ -307,31 +314,34 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div><p>The main parts are the <em>event checking</em> and the <em>cmdline manipulation</em>:</p>
+</span></span></code></pre></div><p>There are two main aspects of this version, the <em>cleanup</em> and the <em>cmdline check</em>:</p>
 <ul>
-<li><em>event checking</em> :: On this version, we&rsquo;re listening for one additional event <code>CmdlineLeave</code> which we use to clean up the <code>wildmode</code> option to the default behavior. To do this we take advantage of the <code>ev</code> passed to the callback, with it we can check the type of the event and perform different actions.</li>
-<li><em>cmdline manipulation</em> :: The function <code>vim.fn.getcmdline()</code> return the whole content of the cmdline typed so far, with this we can do a whole lot of string parsing, in this case we&rsquo;re simply splitting into spaces and checking the first word (which is the command).</li>
+<li><em>cleanup</em> :: On this version, we&rsquo;re listening to an additional event <code>CmdlineLeave</code> which we use to reset the <code>wildmode</code> option to the default value. This is important to not affect further commands on the cmdline. To do that, we take advantage of the <code>ev</code> parameter passed to the callback; with it we can check the <code>.event</code> and perform different actions.</li>
+<li><em>cmdline check</em> :: With the function <code>vim.fn.getcmdline()</code> we get the whole content of the cmdline typed so far as a string, considering that it is just a matter of string parsing to get the parts we want. To keep it simple, we&rsquo;re just splitting on spaces and checking the first word (the command).</li>
 </ul>
-<p>It&rsquo;s done this way because I don&rsquo;t like autocompletion everywhere, so when I&rsquo;m using any regular command (e.g <code>:Ex</code>) I want to keep that default behavior of pressing tab to immediately insert the completion option.</p>
-<hr>
-<p>Finally reaching for the mappings! Particularly this is the most interesting part if you ask me, it got so much cool features (most of them I got from emacs don&rsquo;t judge)</p>
-<p>First let&rsquo;s talk about the command manipulation ones:</p>
+<p>Great! Our current version has a controlled autocompletion based on the command and a fuzzy finding method attached to it. What else is needed? Now we&rsquo;ll add the convenient strategies implied by plugin fuzzy finders to open the selection on splits and other cool additions that worked for me personally.</p>
+<p>I need to be honest here; some of these keymaps I got the idea from Emacs (no judgments), and it suited so well with this finder. Some of them are quite simple, and we&rsquo;ll start off with them!</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;m-e&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;edit&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :edit&#39;</span> })
 </span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-v&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;vs&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :vs&#39;</span> })
-</span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-s&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;sp&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :vs&#39;</span> })
-</span></span></code></pre></div><p>All of them use the same &ldquo;template&rdquo;, let&rsquo;s look into it more in detail:</p>
+</span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-s&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;sp&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :sp&#39;</span> })
+</span></span><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;c-t&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;tabe&lt;end&gt;&#39;</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Change command to :tabe })
+</span></span></span></code></pre></div><p>Quite simple, right? All of them do the same thing: they change the command to achieve different actions like opening on a split, a tab, etc. Let&rsquo;s break the syntax briefly:</p>
 <ul>
-<li><code>&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;</code> :: This sequence first send the cursor to the beginning of the line (<code>&lt;home&gt;</code>), then navigate one word to the right (<code>&lt;s-right&gt;</code> or <code>shift+right</code>) and finally delete the word from right to left (<code>&lt;c-w&gt;</code> or <code>ctrl+w</code>). Leaving the cmdline without the command, for example <code>:&lt;&lt;cursor_here&gt;&gt; plugin/cmdline.lua</code></li>
-<li>word + <code>&lt;end&gt;</code> :: Here is quite straightforward, the <code>word</code> changes from each command and the <code>&lt;end&gt;</code> send the cursor to the end of the line, so you can continue typing or press enter to confirm the command.</li>
+<li><code>&lt;home&gt;&lt;s-right&gt;&lt;c-w&gt;</code> :: This sequence first sends the cursor to the beginning of the line (<code>&lt;home&gt;</code>), then navigates one word to the right (<code>&lt;s-right&gt;</code> or <code>shift+right</code>) and finally deletes the word from right to left (<code>&lt;c-w&gt;</code> or <code>ctrl+w</code>). Leaving the cmdline without the command, for example, <code>:&lt;&lt;cursor_here&gt;&gt; plugin/cmdline.lua</code></li>
+<li>word + <code>&lt;end&gt;</code> :: Here it is quite straightforward; the <code>word</code> changes from each command, and the <code>&lt;end&gt;</code> sends the cursor to the end of the line, so you can continue typing or press enter to confirm the command.</li>
 </ul>
-<p>Now for the more involved one, let&rsquo;s take a look into the <code>&quot;Edit the dir for the path&quot;</code> key bind:</p>
+<p>Got it? These bindings already bring up the functionalities provided by common fuzzy finders, but let&rsquo;s go a little further with an additional keymap: manipulate the current path to get the directory instead. The purpose is to easily open the directory for a file to move/copy/delete something.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>vim.keymap.set(<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;&lt;m-d&gt;&#39;</span>, <span style="color:#66d9ef">function</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> is_cmdline_type_find() <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> cmdline <span style="color:#f92672">=</span> vim.fn.split(vim.fn.getcmdline(), <span style="color:#e6db74">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> cmdline_cmd <span style="color:#f92672">=</span> cmdline[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> (cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;find&#39;</span> <span style="color:#f92672">or</span> cmdline_cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;fin&#39;</span>) <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>        vim.notify(<span style="color:#e6db74">&#39;This binding should be used with :find&#39;</span>, vim.log.levels.ERROR)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> cmdline_arg <span style="color:#f92672">=</span> vim.fn.split(vim.fn.getcmdline(), <span style="color:#e6db74">&#39; &#39;</span>)[<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">local</span> cmdline_arg <span style="color:#f92672">=</span> cmdline[<span style="color:#ae81ff">2</span>]
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> vim.uv.fs_realpath(vim.fn.expand(cmdline_arg)) <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>        vim.notify(<span style="color:#e6db74">&#39;The second argument should be a valid path&#39;</span>, vim.log.levels.ERROR)
@@ -346,20 +356,22 @@
 </span></span><span style="display:flex;"><span>    )
 </span></span><span style="display:flex;"><span>    vim.fn.feedkeys(keys, <span style="color:#e6db74">&#39;c&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>, { desc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Edit the dir for the path&#39;</span> })
-</span></span></code></pre></div><p>The initial part parse the whole cmdline string (like we saw earlier about the usage of <code>vim.fn.getcmdline()</code>) to check if the current command is <code>:find</code> and if the second argument is a valid path. We just want to process on these cases.</p>
-<p>The editing on this part is a little more tricky because we need to trigger it programmatically instead of just mapping one sequence of characters to another like we did on the last ones. We two main functions <code>vim.api.nvim_replace_termcodes</code> and <code>vim.fn.feedkeys</code> to trigger those characters:</p>
+</span></span></code></pre></div><p>The initial part parses the whole cmdline string (like we saw earlier about the usage of <code>vim.fn.getcmdline()</code>) to check if the current command is <code>:find</code> and if the second argument is a valid path. We just want to process these cases.</p>
+<p>The cmdline manipulation on this part is a little trickier because instead of just outputting the special syntax like the previous keymaps, we need to do it programmatically. For this to be possible, we need two important functions: <code>vim.api.nvim_replace_termcodes</code> and <code>vim.fn.feedkeys</code>.</p>
 <ul>
-<li><code>vim.api.nvim_replace_termcodes</code> :: This function transform special syntax like <code>&lt;c-u&gt;</code> into something neovim can understand while it&rsquo;s feeding keys, it mostly transform these modifiers into <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape sequences</a> like <code>^\U</code></li>
-<li><code>vim.fn.feedkeys</code> :: This function pass the sequence of keys and tries to mimic them into the mode specify. For our case it&rsquo;s mimicking the key sequence with the cmdline mode <code>'c'</code></li>
+<li><code>vim.api.nvim_replace_termcodes</code> :: This function transforms special syntax like <code>&lt;c-u&gt;</code> into a version commonly used in shells; it mostly transforms these modifiers into <a href="https://en.wikipedia.org/wiki/Escape_sequence">escape sequences</a> like <code>^\U</code> for <code>ctrl+u</code>.</li>
+<li><code>vim.fn.feedkeys</code> :: This function passes the sequence of keys and tries to mimic them into the mode specified. For our case it&rsquo;s mimicking the key sequence with the cmdline mode <code>'c'</code>. It emulates what would happen if you had typed that sequence manually.</li>
 </ul>
 <blockquote>
-<p>To avoid missing blank spots: The <code>vim.fs.dirname</code> function take a path as an argument and return a path for the parent directory of it, like the following:</p>
+<p>Another important function is the <code>vim.fs.dirname</code> one, this function receive a path as argument and return the path to the parent directory of it, like the following:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>vim.fs.dirname(<span style="color:#e6db74">&#34;plugin/cmdline.lua&#34;</span>) <span style="color:#75715e">-- &#34;plugin&#34;`</span>
 </span></span><span style="display:flex;"><span>vim.fs.dirname(<span style="color:#e6db74">&#34;/home/user/.config/nvim/after/plugin/test.lua&#34;</span>) <span style="color:#75715e">-- &#34;/home/user/.config/nvim/after/plugin/&#34;`</span>
 </span></span></code></pre></div></blockquote>
-<p>With these functions the behavior is quite similar to the simpler key maps, we first extract the path from the cmdline and them trigger the key sequence <code>&lt;c-u&gt;</code> or <code>ctrl+u</code> which delete the whole line, then we type from the ground up <code>edit</code> followed by the directory path.</p>
-<h2 id="conclusion">Conclusion<a href="#conclusion" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>Hope this is useful for anyone reading it, I&rsquo;m still exploring more ways to better use native features and will explain it here once I find anything useful like this one. Feel free to reach out and talk about the solution or the quality of the post itself, any tips to improve the solution or my writing is much welcome.</p>
+<p>Having explained these functions, we can sum up the behavior of the binding like the following: For the <code>:find</code> command, by pressing <code>option+d</code> or <code>alt+d</code> we replace the path with the parent directory version of it, allowing you to open your file browser of choice.</p>
+<blockquote>
+<p>The <code>&lt;c-u&gt;</code> or <code>ctrl+u</code> triggered from the function delete the content of the whole line.</p></blockquote>
+<h2 id="final-thoughts">Final thoughts<a href="#final-thoughts" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>I hope some of this is useful for you reading it! Either by knowing a new function or some interesting behavior that you didn&rsquo;t know about nvim, the main goal with these explorations is to know more about the editor we all use every day. Feel free to reach out so we can talk more about this topic. :) May the Force be with you. 🍒.</p>
 
       </div></div>
 

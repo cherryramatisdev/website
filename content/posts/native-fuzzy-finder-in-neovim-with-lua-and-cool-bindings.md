@@ -18,6 +18,8 @@ Well, this is the exact situation I'm currently in, trying to experiment with na
 
 For the ones with a practical sense, this is the whole module I have at `plugin/cmdline.lua` for you to copy and try for yourself. Throughout this blog post, we'll break up piece by piece how it works.
 
+You can also find a vim9 version that originated all my thoughts around this theme: <https://www.reddit.com/r/vim/comments/1mvzitt/yet_another_simple_fuzzy_file_finder/>
+
 ```lua
 if vim.fn.executable "rg" == 1 then
     function _G.RgFindFiles(cmdarg, _cmdcomplete)

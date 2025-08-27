@@ -154,7 +154,7 @@
   <h1 class="post-title">
     <a href="//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/">Native Fuzzy Finder in Neovim With Lua and Cool Bindings</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2025-08-25</time><span class="post-author">[Cherry Ramatis]</span><span class="post-reading-time">11 min read (2174 words)</span></div>
+  <div class="post-meta"><time class="post-date">2025-08-25</time><span class="post-author">[Cherry Ramatis]</span><span class="post-reading-time">11 min read (2190 words)</span></div>
 
   
     <span class="post-tags">
@@ -176,6 +176,7 @@
 <blockquote>
 <p>First things first, it&rsquo;s important to point out that I&rsquo;m using neovim nightly, this is important because we need two particular patches to make all this work properly, which is this the <a href="https://github.com/vim/vim/pull/17806">vim patch adding wildtrigger() function for cmdline completion</a> (<a href="https://github.com/neovim/neovim/pull/35022">neovim equivalent</a>) and the <a href="https://github.com/vim/vim/pull/15976">vim patch adding findfunc as a option</a> (<a href="https://github.com/neovim/neovim/pull/31058">neovim equivalent</a>). If at the time you&rsquo;re reading this post those patches are already available at stable version, you don&rsquo;t need to worry with building from source.</p></blockquote>
 <p>For the ones with a practical sense, this is the whole module I have at <code>plugin/cmdline.lua</code> for you to copy and try for yourself. Throughout this blog post, we&rsquo;ll break up piece by piece how it works.</p>
+<p>You can also find a vim9 version that originated all my thoughts around this theme: <a href="https://www.reddit.com/r/vim/comments/1mvzitt/yet_another_simple_fuzzy_file_finder/">https://www.reddit.com/r/vim/comments/1mvzitt/yet_another_simple_fuzzy_file_finder/</a></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> vim.fn.executable <span style="color:#e6db74">&#34;rg&#34;</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_G</span>.<span style="color:#a6e22e">RgFindFiles</span>(cmdarg, _cmdcomplete)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">local</span> fnames <span style="color:#f92672">=</span> vim.fn.systemlist(<span style="color:#e6db74">&#39;rg --files --hidden --color=never --glob=&#34;!.git&#34;&#39;</span>)
@@ -384,6 +385,12 @@
   </div>
   <div class="pagination__buttons">
     
+      <a href="//localhost:1313/posts/quick-tip-for-the-week-1-making-netrw-more-usable/" class="button inline prev">
+        &lt; [<span class="button__text">Quick Tip for the Week 1 Making Netrw More Usable</span>]
+      </a>
+    
+    
+      ::
     
     
       <a href="//localhost:1313/posts/hello-world/" class="button inline next">

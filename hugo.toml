@@ -21,6 +21,7 @@ theme = ["github.com/panr/hugo-theme-terminal/v4"]
   unsafe = true
 
 [params]
+  subtitle = "My blog to write about personal and programming stuff, just that"
   contentTypeName = "posts"
   showMenuItems = 2
   fullWidthTheme = true

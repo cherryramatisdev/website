@@ -10,6 +10,14 @@
   --line-height: 1.54em;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+      --background: #fbfffe;
+      --foreground: #00190c;
+      --accent: #f2b4df;
+  }
+}
+
 html {
   box-sizing: border-box;
 }

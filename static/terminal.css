@@ -11,7 +11,7 @@
   :root {
       --background: #fbfffe;
       --foreground: #00190c;
-      --accent: #f2b4df;
+      --accent: #982077;
   }
 }
 
@@ -28,28 +28,31 @@ html {
 }
 
 @font-face {
-  font-family: 'NeoSpleenNerdFont';
-  src: url('NeoSpleenNerdFont-Regular.ttf') format('truetype');
+  font-family: 'NeoSpleen';
+  src: url('NeoSpleen-Regular.woff2') format('woff2');
+  font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NeoSpleenNerdFont';
-  src: url('NeoSpleenNerdFont-Medium.ttf') format('truetype');
+  font-family: 'NeoSpleen';
+  src: url('NeoSpleen-Medium.woff2') format('woff2');
+  font-display: swap;
   font-weight: 500; /* or 'medium' */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'NeoSpleenNerdFont';
-  src: url('NeoSpleenNerdFont-Bold.ttf') format('truetype');
+  font-family: 'NeoSpleen';
+  src: url('NeoSpleen-Bold.woff2') format('woff2');
+  font-display: swap;
   font-weight: bold;
   font-style: normal;
 }
 
 body {
-  font-family: "NeoSpleenNerdFont", monospace;
+  font-family: "NeoSpleen", monospace;
   font-size: var(--font-size);
   font-weight: 400;
   line-height: var(--line-height);
@@ -264,7 +267,7 @@ ol li {
 
 code,
 kbd {
-  font-family: "NeoSpleenNerdFont", monospace !important;
+  font-family: "NeoSpleen", monospace !important;
   font-feature-settings: normal;
   background: color-mix(in srgb, var(--foreground) 5%, transparent);
   color: color-mix(in srgb, var(--foreground) 5%, var(--accent));

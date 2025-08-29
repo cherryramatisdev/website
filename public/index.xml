@@ -6,8 +6,15 @@
     <description>Recent content on Cherry&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 25 Aug 2025 11:25:34 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 27 Aug 2025 12:29:58 -0300</lastBuildDate>
     <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick Tip for the Week #1: Making Netrw More Usable</title>
+      <link>//localhost:1313/posts/quick-tip-for-the-week-1-making-netrw-more-usable/</link>
+      <pubDate>Wed, 27 Aug 2025 12:29:58 -0300</pubDate>
+      <guid>//localhost:1313/posts/quick-tip-for-the-week-1-making-netrw-more-usable/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s definitely not new to any Neovim user that we have &lt;strong&gt;a lot&lt;/strong&gt; of file browser plugins, all over from the super minimalistic, like &lt;a href=&#34;https://github.com/justinmk/vim-dirvish&#34;&gt;vim-dirvish,&lt;/a&gt; to the full-blown new experiences like &lt;a href=&#34;https://github.com/stevearc/oil.nvim&#34;&gt;oil.nvim&lt;/a&gt; or &lt;a href=&#34;https://github.com/nvim-neo-tree/neo-tree.nvim&#34;&gt;neo-tree.nvim&lt;/a&gt;. But what about netrw? You know, that file browser that comes default with (Neo)Vim and certainly has some weird behaviors? Recently I started thinking about what could be done to fix some of those weird behaviors and potentially remove yet another plugin for my use case in my crusade for minimalism. As always, I hope you find something useful for your own config. :)&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Native Fuzzy Finder in Neovim With Lua and Cool Bindings</title>
       <link>//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</link>

@@ -3,11 +3,22 @@ languageCode = 'en-us'
 title = "Cherry's Blog"
 theme = ["github.com/panr/hugo-theme-terminal/v4"]
 
+[mediaTypes]
+[mediaTypes."text/org"]
+  suffixes = ["org"]
+  delimiter = "."
+
+[outputFormats]
+[outputFormats.ORG]
+  mediaType = "text/org"
+  isPlainText = true
+  isHTML = false
+
 [outputs]
-  home = ['html', 'rss']
-  section = ['html', 'rss']
-  taxonomy = ['html']
-  term = ['html']
+  home = ['html', 'rss', 'org']
+  section = ['html', 'rss', 'org']
+  taxonomy = ['html', 'org']
+  term = ['html', 'org']
 
 [services]
   [services.rss]

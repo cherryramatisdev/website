@@ -1,0 +1,16 @@
+#+TITLE: Cherry's Journal
+#+NICK: cherry
+#+DESCRIPTION: Trying to quit vim since 2018
+#+AVATAR: https://cherryramatis.xyz/avatar.jpg
+#+LINK: https://cherryramatis.xyz/
+#+FOLLOW: omidmash https://omidmash.de/social.org
+#+CONTACT: mailto:cherry.ramatis@gmail.com
+#+CONTACT: https://mastodon.social/@cherryramatis
+
+* Posts
+** First post
+:PROPERTIES:
+:ID: 2025-08-30T10:50:00+0100
+:END:
+
+This is my first post on Org Social.

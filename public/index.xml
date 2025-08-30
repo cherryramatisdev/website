@@ -1,41 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Cherry&#39;s Blog</title>
-    <link>//localhost:1313/</link>
-    <description>Recent content on Cherry&#39;s Blog</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 27 Aug 2025 12:29:58 -0300</lastBuildDate>
-    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Quick Tip for the Week #1: Making Netrw More Usable</title>
-      <link>//localhost:1313/posts/quick-tip-for-the-week-1-making-netrw-more-usable/</link>
-      <pubDate>Wed, 27 Aug 2025 12:29:58 -0300</pubDate>
-      <guid>//localhost:1313/posts/quick-tip-for-the-week-1-making-netrw-more-usable/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s definitely not new to any Neovim user that we have &lt;strong&gt;a lot&lt;/strong&gt; of file browser plugins, all over from the super minimalistic, like &lt;a href=&#34;https://github.com/justinmk/vim-dirvish&#34;&gt;vim-dirvish,&lt;/a&gt; to the full-blown new experiences like &lt;a href=&#34;https://github.com/stevearc/oil.nvim&#34;&gt;oil.nvim&lt;/a&gt; or &lt;a href=&#34;https://github.com/nvim-neo-tree/neo-tree.nvim&#34;&gt;neo-tree.nvim&lt;/a&gt;. But what about netrw? You know, that file browser that comes default with (Neo)Vim and certainly has some weird behaviors? Recently I started thinking about what could be done to fix some of those weird behaviors and potentially remove yet another plugin for my use case in my crusade for minimalism. As always, I hope you find something useful for your own config. :)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Native Fuzzy Finder in Neovim With Lua and Cool Bindings</title>
-      <link>//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</link>
-      <pubDate>Mon, 25 Aug 2025 11:25:34 -0300</pubDate>
-      <guid>//localhost:1313/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</guid>
-      <description>&lt;p&gt;Recently, I read a particular &lt;a href=&#34;https://yobibyte.github.io/vim.html&#34;&gt;blog post by yobibyte&lt;/a&gt; about a no-plugins approach to Neovim configuration, which stuck with me. I started to think more and more about how much stuff I really need for my config to suit my needs. Personally, the main reason why I resonate so much with a particular family of editors (Vim, Nvim, Kakoune, Emacs, etc.) is the ability to add as much stuff as you want, but at the same time the opportunity to remove as much bloat as possible—a little controversial, but if you think about it, it&amp;rsquo;s the best scenario for customizability. I remember watching a video about the concept of a &lt;a href=&#34;https://www.youtube.com/watch?v=QMVIJhC9Veg&#34;&gt;PDE&lt;/a&gt; coined by a Neovim contributor called teej_dv, and it really stuck with me. These types of editors are more like an environment than just a product with a single goal.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>  (format t &#34;Hello World~%&#34;)
-  </title>
-      <link>//localhost:1313/posts/hello-world/</link>
-      <pubDate>Sun, 04 May 2025 15:18:00 -0300</pubDate>
-      <guid>//localhost:1313/posts/hello-world/</guid>
-      <description>&lt;p&gt;Nice that you&amp;rsquo;re here! I&amp;rsquo;ll be trying to post both &lt;code&gt;personal&lt;/code&gt; and &lt;code&gt;tech&lt;/code&gt; related stuff, the idea is to keep me writing more constantly.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>//localhost:1313/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/about/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/86631177/212934124-15c3ef0a-9a48-4a00-af39-8e0d8a89c4f4.gif&#34; alt=&#34;princess-bubble-gum-388429236&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;(better description wip)&amp;hellip;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;🔭 I’m currently working as a frontend developer @ iFood&lt;/li&gt;&#xA;&lt;li&gt;💜 I&amp;rsquo;m a proud member of the best community &lt;a href=&#34;https://github.com/he4rt&#34;&gt;He4rt&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;🤝 I love to write about ruby and other stuffs I&amp;rsquo;m using at &lt;a href=&#34;https://dev.to/cherryramatis/&#34;&gt;Dev to&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;💬 Ask me about vim, emacs, automation, scripting, ruby, lisp, etc&amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;⚡ Fun fact I can type 118 words per minute&lt;/li&gt;&#xA;&lt;li&gt;📫 How to reach me: &lt;a href=&#34;https://www.linkedin.com/in/cherryramatis/&#34;&gt;Linkedin&lt;/a&gt; or &lt;a href=&#34;mailto:cherry.ramatis&amp;#43;contact@gmail.com&#34;&gt;Email&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;🏳️‍⚧️ Pronouns: She/Her Ela/Dela&lt;/li&gt;&#xA;&lt;li&gt;🗣️ Languages that i speak: Brazilian Portuguese (Native) and English&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cherry's Blog</title><link>/</link><description>Recent content on Cherry's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 27 Aug 2025 12:29:58 -0300</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Quick Tip for the Week #1: Making Netrw More Usable</title><link>/posts/quick-tip-for-the-week-1-making-netrw-more-usable/</link><pubDate>Wed, 27 Aug 2025 12:29:58 -0300</pubDate><guid>/posts/quick-tip-for-the-week-1-making-netrw-more-usable/</guid><description>&lt;p>It&amp;rsquo;s definitely not new to any Neovim user that we have &lt;strong>a lot&lt;/strong> of file browser plugins, all over from the super minimalistic, like &lt;a href="https://github.com/justinmk/vim-dirvish">vim-dirvish,&lt;/a> to the full-blown new experiences like &lt;a href="https://github.com/stevearc/oil.nvim">oil.nvim&lt;/a> or &lt;a href="https://github.com/nvim-neo-tree/neo-tree.nvim">neo-tree.nvim&lt;/a>. But what about netrw? You know, that file browser that comes default with (Neo)Vim and certainly has some weird behaviors? Recently I started thinking about what could be done to fix some of those weird behaviors and potentially remove yet another plugin in my crusade for minimalism. As always, I hope you find something useful for your own config. :)&lt;/p></description></item><item><title>Native Fuzzy Finder in Neovim With Lua and Cool Bindings</title><link>/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</link><pubDate>Mon, 25 Aug 2025 11:25:34 -0300</pubDate><guid>/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/</guid><description>&lt;p>Recently, I read a particular &lt;a href="https://yobibyte.github.io/vim.html">blog post by yobibyte&lt;/a> about a no-plugins approach to Neovim configuration, which stuck with me. I started to think more and more about how much stuff I really need for my config to suit my needs. Personally, the main reason why I resonate so much with a particular family of editors (Vim, Nvim, Kakoune, Emacs, etc.) is the ability to add as much stuff as you want, but at the same time the opportunity to remove as much bloat as possible—a little controversial, but if you think about it, it&amp;rsquo;s the best scenario for customizability. I remember watching a video about the concept of a &lt;a href="https://www.youtube.com/watch?v=QMVIJhC9Veg">PDE&lt;/a> coined by a Neovim contributor called teej_dv, and it really stuck with me. These types of editors are more like an environment than just a product with a single goal.&lt;/p></description></item><item><title> (format t "Hello World~%")</title><link>/posts/hello-world/</link><pubDate>Sun, 04 May 2025 15:18:00 -0300</pubDate><guid>/posts/hello-world/</guid><description>&lt;p>Nice that you&amp;rsquo;re here! I&amp;rsquo;ll be trying to post both &lt;code>personal&lt;/code> and &lt;code>tech&lt;/code> related stuff, the idea is to keep me writing more constantly.&lt;/p></description></item><item><title/><link>/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/about/</guid><description>&lt;p>&lt;img src="https://user-images.githubusercontent.com/86631177/212934124-15c3ef0a-9a48-4a00-af39-8e0d8a89c4f4.gif" alt="princess-bubble-gum-388429236">&lt;/p>
+&lt;blockquote>
+&lt;p>(better description wip)&amp;hellip;&lt;/p>&lt;/blockquote>
+&lt;ul>
+&lt;li>🔭 I’m currently working as a frontend developer @ iFood&lt;/li>
+&lt;li>💜 I&amp;rsquo;m a proud member of the best community &lt;a href="https://github.com/he4rt">He4rt&lt;/a>&lt;/li>
+&lt;li>🤝 I love to write about ruby and other stuffs I&amp;rsquo;m using at &lt;a href="https://dev.to/cherryramatis/">Dev to&lt;/a>&lt;/li>
+&lt;li>💬 Ask me about vim, emacs, automation, scripting, ruby, lisp, etc&amp;hellip;&lt;/li>
+&lt;li>⚡ Fun fact I can type 118 words per minute&lt;/li>
+&lt;li>📫 How to reach me: &lt;a href="https://www.linkedin.com/in/cherryramatis/">Linkedin&lt;/a> or &lt;a href="mailto:cherry.ramatis&amp;#43;contact@gmail.com">Email&lt;/a>&lt;/li>
+&lt;li>🏳️‍⚧️ Pronouns: She/Her Ela/Dela&lt;/li>
+&lt;li>🗣️ Languages that i speak: Brazilian Portuguese (Native) and English&lt;/li>
+&lt;/ul></description></item></channel></rss>

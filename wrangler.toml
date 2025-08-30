@@ -1,0 +1,9 @@
+name = "website"
+compatibility_date = "2025-08-29"
+
+[build]
+command = "hugo --gc --minify"
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"

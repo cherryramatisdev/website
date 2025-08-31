@@ -30,3 +30,15 @@ This is my first post on Org Social.
 Finally! A new post from inside neovim using the [[https://github.com/cherryramatisdev/org-social.nvim][org-social.nvim]] plugin :D
 
 Still have a whole lot of features to develop including improving the timeline to be as friendly as possible, but getting there step by step!
+
+**
+:PROPERTIES:
+:ID: 2025-08-31T19:24:39-0300
+:LANG: 
+:TAGS: 
+:CLIENT: org-social.el
+:REPLY_TO: https://emillo.net/social.org#2025-08-31T22:24:31+0200
+:MOOD: 
+:END:
+
+Thanks a lot! This project is so exciting and it's been really cool trying to write a client for it.

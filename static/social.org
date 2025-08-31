@@ -3,7 +3,15 @@
 #+DESCRIPTION: Trying to quit vim since 2018
 #+AVATAR: https://cherryramatis.xyz/avatar.jpg
 #+LINK: https://cherryramatis.xyz/
+#+FOLLOW: andros https://andros.dev/static/social.org
+#+FOLLOW: rossabaker https://rossabaker.com/social.org
 #+FOLLOW: omidmash https://omidmash.de/social.org
+#+FOLLOW: johnhame https://johnhame.link/social.org
+#+FOLLOW: eoin https://eoin.site/social.org
+#+FOLLOW: adsan https://adsan.dev/social.org
+#+FOLLOW: emillo https://emillo.net/social.org
+#+FOLLOW: cmdln https://cmdln.org/social.org
+#+FOLLOW: sachachua https://sachachua.com/social.org
 #+CONTACT: mailto:cherry.ramatis@gmail.com
 #+CONTACT: https://mastodon.social/@cherryramatis
 
@@ -14,3 +22,11 @@
 :END:
 
 This is my first post on Org Social.
+**
+:PROPERTIES:
+:ID: 2025-08-31T19:13:23-0300
+:END:
+
+Finally! A new post from inside neovim using the [[https://github.com/cherryramatisdev/org-social.nvim][org-social.nvim]] plugin :D
+
+Still have a whole lot of features to develop including improving the timeline to be as friendly as possible, but getting there step by step!

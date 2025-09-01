@@ -42,3 +42,15 @@ Still have a whole lot of features to develop including improving the timeline t
 :END:
 
 Thanks a lot! This project is so exciting and it's been really cool trying to write a client for it.
+
+**
+:PROPERTIES:
+:ID: 2025-08-31T21:20:17-0300
+:LANG: 
+:TAGS: 
+:CLIENT: org-social.el
+:REPLY_TO: https://adsan.dev/social.org#2025-09-01T00:33:48+02:00
+:MOOD: 
+:END:
+
+Can't agree more, it's cool that we'll eventually develop patterns and better documentation for newcoming clients. A open protocol with the freedom of multiple clients is always the way to go

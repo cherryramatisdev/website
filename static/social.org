@@ -95,3 +95,10 @@ Replying is working now on the client! Alongside with some other bindings
 :REPLY_TO: https://andros.dev/static/social.org#2025-09-03T12:12:57+0200
 :POLL_OPTION: Yes
 :END:
+**
+:PROPERTIES:
+:ID: 2025-09-03T14:30:21-0300
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-03T15:12:09+0200
+:END:
+
+The polls are really nice! congrats <3

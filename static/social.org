@@ -85,7 +85,13 @@ It's been quite a long time that I watched mr. robot and it's cool to observe I'
 **
 :PROPERTIES:
 :ID: 2025-09-03T00:33:01-0300
-:REPLY_TO: 2025-09-02T23:32:52-0300
+:REPLY_TO: https://cherryramatis.xyz/social.org#2025-09-02T23:32:52-0300
 :END:
 
 Replying is working now on the client! Alongside with some other bindings
+**
+:PROPERTIES:
+:ID: 2025-09-03T13:04:37-0300
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-03T12:12:57+0200
+:POLL_OPTION: Yes
+:END:

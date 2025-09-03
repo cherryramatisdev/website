@@ -63,3 +63,15 @@ Can't agree more, it's cool that we'll eventually develop patterns and better do
 Did some small updates today on [[https://github.com/cherryramatisdev/org-social.nvim][org-social.nvim]], specially improving the timeline by adding the replies inside the target post.
 
 Also I'm rewatching Mr.Robot :D
+
+**
+:PROPERTIES:
+:ID: 2025-09-02T23:02:00-0300
+:LANG: 
+:TAGS: 
+:CLIENT: org-social.el
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-02T17:33:18+0200
+:MOOD: ✨
+:END:
+
+Thanks a lot for mentioning! Super excited with this amazing project

@@ -111,3 +111,15 @@ The polls are really nice! congrats <3
 I'm looking for some french tech blogs and video channels to guide my learning of the language. Anyone has any tip please?
 
 hope yall a great day <3
+
+**
+:PROPERTIES:
+:ID: 2025-09-06T14:45:07-0300
+:LANG: 
+:TAGS: 
+:CLIENT: org-social.el
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-03T08:07:45+0200
+:MOOD: 
+:END:
+
+Infinite configuration in neovim and terminal is probably worse I think lol

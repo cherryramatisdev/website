@@ -37,6 +37,7 @@ theme = ["github.com/panr/hugo-theme-terminal/v4"]
   showMenuItems = 2
   fullWidthTheme = true
   centerTheme = true
+  readingTime = true
 
 [languages]
   [languages.en]

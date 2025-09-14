@@ -1,10 +1,9 @@
 +++
 title = """
-  (format t "Hello World~%")
+  (format t "Hello world~%")
   """
 author = ["Cherry Ramatis"]
-date = 2025-05-04T15:18:00-03:00
-lastmod = 2025-05-04T15:28:59-03:00
+date = 2025-05-04
 tags = ["personal"]
 draft = false
 +++

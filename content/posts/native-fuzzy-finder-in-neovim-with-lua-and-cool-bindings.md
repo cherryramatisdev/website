@@ -1,13 +1,9 @@
 +++
 title = "Native Fuzzy Finder in Neovim With Lua and Cool Bindings"
-date = "2025-08-25T11:25:34-03:00"
 author = ["Cherry Ramatis"]
-tags = ["nvim", "tech"]
-keywords = ["nvim", "fuzzy", "finder"]
-description = "I built a native fuzzy finder in Neovim to remove yet another plugin and enjoy the latest goods shipped to the main branch."
-showFullContent = false
-readingTime = true
-hideComments = false
+date = 2025-08-25
+tags = ["nvim", "fuzzy", "finder"]
+draft = false
 +++
 
 Recently, I read a particular [blog post by yobibyte](https://yobibyte.github.io/vim.html) about a no-plugins approach to Neovim configuration, which stuck with me. I started to think more and more about how much stuff I really need for my config to suit my needs. Personally, the main reason why I resonate so much with a particular family of editors (Vim, Nvim, Kakoune, Emacs, etc.) is the ability to add as much stuff as you want, but at the same time the opportunity to remove as much bloat as possible—a little controversial, but if you think about it, it's the best scenario for customizability. I remember watching a video about the concept of a [PDE](https://www.youtube.com/watch?v=QMVIJhC9Veg) coined by a Neovim contributor called teej_dv, and it really stuck with me. These types of editors are more like an environment than just a product with a single goal.
@@ -95,9 +91,10 @@ And here is a demo showing off all the features available:
 
 > Disclaimer: The screenkey plugin here is a bit laggy so consider referencing the keybinds with the code block above if something was confusing.
 
-[![demo](https://asciinema.org/a/735657.svg)](https://asciinema.org/a/735657)
+{{< figure src="https://asciinema.org/a/735657.svg" link="https://asciinema.org/a/735657" >}}
 
-## Breaking up piece by piece
+
+## Breaking up piece by piece {#breaking-up-piece-by-piece}
 
 OK! Time to dive into this module. The first feature that honestly made all this even possible is the simplest to explain: the `findfunc` option. This patch was merged into Neovim in November 2024 from a Vim patch and introduced the possibility of customizing how the editor searched files using the `:find` cmd.
 
@@ -124,7 +121,7 @@ vim.o.findfunc = 'v:lua.RgFindFiles'
 
 As you can see, the `cmdarg` is the substring typed by the user (it's nil when the user didn't type anything). For this function, we separate into returning the whole list of files when the user hasn't typed anything yet and returning the fuzzy matched list according to the substring provided. The function will be called every time the user manually presses the `<tab>` key, and all the details regarding the limit of items shown and navigation are dealt with by the `wildmenu` option (you can find more about it with `:h wildmenu`)
 
----
+----
 
 Nice! We now have tab-completed fuzzy finding; let's spice things up with ✨ autocompletion ✨. I'm not a particular fan of autocompletion when I'm typing on a buffer, but it certainly fits perfectly when filtering file paths.
 
@@ -144,10 +141,9 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
 })
 ```
 
+> You can move the \`wildmenu\` and \`wildmode\` configuration outside the autocmd without any problems, we're just containing more in favor of control and simplicity.
 
-> You can move the `wildmenu` and `wildmode` configuration outside the autocmd without any problems, we're just containing more in favor of control and simplicity.
-
-Together with the `wildtrigger` function being called on every change, we have a neat setting being placed here: the `wildmode`. This option is important because it allows us to not immediately insert the first option when the completion popup appears; it's similar to what we set in `completeopt` to configure buffer autocompletion frameworks like [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
+Together with the `wildtrigger` function being called on every change, we have a neat setting being placed here: the `wildmode`. This option is important because it allows us to not immediately insert the first option when the completion popup appears; it's similar to what we set in `completeopt` to configure buffer autocompletion frameworks like  [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
 
 For context, let's take a look into the full description for this option from the help pages:
 
@@ -191,11 +187,13 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged', 'CmdlineLeave' }, {
 })
 ```
 
+There are two main aspects of this version, the **cleanup** and the **cmdline check**:
 
-There are two main aspects of this version, the *cleanup* and the *cmdline check*:
+_cleanup_
+: On this version, we're listening to an additional event `CmdlineLeave` which we use to reset the `wildmode` option to the default value. This is important to not affect further commands on the cmdline. To do that, we take advantage of the `ev` parameter passed to the callback; with it we can check the `.event` and perform different actions.
 
-- *cleanup* :: On this version, we're listening to an additional event `CmdlineLeave` which we use to reset the `wildmode` option to the default value. This is important to not affect further commands on the cmdline. To do that, we take advantage of the `ev` parameter passed to the callback; with it we can check the `.event` and perform different actions.
-- *cmdline check* :: With the function `vim.fn.getcmdline()` we get the whole content of the cmdline typed so far as a string, considering that it is just a matter of string parsing to get the parts we want. To keep it simple, we're just splitting on spaces and checking the first word (the command).
+_cmdline check_
+: With the function `vim.fn.getcmdline()` we get the whole content of the cmdline typed so far as a string, considering that it is just a matter of string parsing to get the parts we want. To keep it simple, we're just splitting on spaces and checking the first word (the command).
 
 Great! Our current version has a controlled autocompletion based on the command and a fuzzy finding method attached to it. What else is needed? Now we'll add the convenient strategies implied by plugin fuzzy finders to open the selection on splits and other cool additions that worked for me personally.
 
@@ -205,13 +203,16 @@ I need to be honest here; some of these keymaps I got the idea from Emacs (no ju
 vim.keymap.set('c', '<m-e>', '<home><s-right><c-w>edit<end>', { desc = 'Change command to :edit' })
 vim.keymap.set('c', '<c-v>', '<home><s-right><c-w>vs<end>', { desc = 'Change command to :vs' })
 vim.keymap.set('c', '<c-s>', '<home><s-right><c-w>sp<end>', { desc = 'Change command to :sp' })
-vim.keymap.set('c', '<c-t>', '<home><s-right><c-w>tabe<end>', { desc = 'Change command to :tabe })
+vim.keymap.set('c', '<c-t>', '<home><s-right><c-w>tabe<end>', { desc = 'Change command to :tabe' })
 ```
 
 Quite simple, right? All of them do the same thing: they change the command to achieve different actions like opening on a split, a tab, etc. Let's break the syntax briefly:
 
-- `<home><s-right><c-w>` :: This sequence first sends the cursor to the beginning of the line (`<home>`), then navigates one word to the right (`<s-right>` or `shift+right`) and finally deletes the word from right to left (`<c-w>` or `ctrl+w`). Leaving the cmdline without the command, for example, `:<<cursor_here>> plugin/cmdline.lua`
-- word + `<end>` :: Here it is quite straightforward; the `word` changes from each command, and the `<end>` sends the cursor to the end of the line, so you can continue typing or press enter to confirm the command.
+`<home><s-right><c-w>`
+: This sequence first sends the cursor to the beginning of the line (`<home>`), then navigates one word to the right (`<s-right>` or `shift+right`) and finally deletes the word from right to left (`<c-w>` or `ctrl+w`). Leaving the cmdline without the command, for example, `:<<cursor_here>> plugin/cmdline.lua`
+
+word + `<end>`
+: Here it is quite straightforward; the `word` changes from each command, and the `<end>` sends the cursor to the end of the line, so you can continue typing or press enter to confirm the command.
 
 Got it? These bindings already bring up the functionalities provided by common fuzzy finders, but let's go a little further with an additional keymap: manipulate the current path to get the directory instead. The purpose is to easily open the directory for a file to move/copy/delete something.
 
@@ -247,20 +248,24 @@ The initial part parses the whole cmdline string (like we saw earlier about the 
 
 The cmdline manipulation on this part is a little trickier because instead of just outputting the special syntax like the previous keymaps, we need to do it programmatically. For this to be possible, we need two important functions: `vim.api.nvim_replace_termcodes` and `vim.fn.feedkeys`.
 
-- `vim.api.nvim_replace_termcodes` :: This function transforms special syntax like `<c-u>` into a version commonly used in shells; it mostly transforms these modifiers into [escape sequences](https://en.wikipedia.org/wiki/Escape_sequence) like `^\U` for `ctrl+u`.
-- `vim.fn.feedkeys` :: This function passes the sequence of keys and tries to mimic them into the mode specified. For our case it's mimicking the key sequence with the cmdline mode `'c'`. It emulates what would happen if you had typed that sequence manually.
+`vim.api.nvim_replace_termcodes`
+: This function transforms special syntax like `<c-u>` into a version commonly used in shells; it mostly transforms these modifiers into [escape sequences](<https://en.wikipedia.org/wiki/Escape_sequence>) like `^\U` for `ctrl+u`.
 
-> Another important function is the `vim.fs.dirname` one, this function receive a path as argument and return the path to the parent directory of it, like the following:
+`vim.fn.feedkeys`
+: This function passes the sequence of keys and tries to mimic them into the mode specified. For our case it's mimicking the key sequence with the cmdline mode `'c'`. It emulates what would happen if you had typed that sequence manually.
+
+> Another important function is the \`vim.fs.dirname\` one, this function receive a path as argument and return the path to the parent directory of it, like the following:
 >
-> ```lua
-> vim.fs.dirname("plugin/cmdline.lua") -- "plugin"`
-> vim.fs.dirname("/home/user/.config/nvim/after/plugin/test.lua") -- "/home/user/.config/nvim/after/plugin/"`
-> ```
+> \`\`\`lua
+> vim.fs.dirname("plugin/cmdline.lua") -- "plugin"\`
+> vim.fs.dirname("_home/user_.config/nvim/after/plugin/test.lua") -- "_home/user_.config/nvim/after/plugin/"\`
+> \`\`\`
 
-Having explained these functions, we can sum up the behavior of the binding like the following: For the `:find` command, by pressing `option+d` or `alt+d` we replace the path with the parent directory version of it, allowing you to open your file browser of choice. 
+Having explained these functions, we can sum up the behavior of the binding like the following: For the `:find` command, by pressing `option+d` or `alt+d` we replace the path with the parent directory version of it, allowing you to open your file browser of choice.
 
 > The `<c-u>` or `ctrl+u` triggered from the function delete the content of the whole line.
 
-## Final thoughts
+
+## Final thoughts {#final-thoughts}
 
 I hope some of this is useful for you reading it! Either by knowing a new function or some interesting behavior that you didn't know about nvim, the main goal with these explorations is to know more about the editor we all use every day. Feel free to reach out so we can talk more about this topic. :) May the Force be with you. 🍒.

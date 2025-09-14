@@ -6,6 +6,7 @@
 #+FOLLOW: andros https://andros.dev/static/social.org
 #+FOLLOW: rossabaker https://rossabaker.com/social.org
 #+FOLLOW: omidmash https://omidmash.de/social.org
+#+FOLLOW: shom https://shom.dev/social.org
 #+FOLLOW: johnhame https://johnhame.link/social.org
 #+FOLLOW: eoin https://eoin.site/social.org
 #+FOLLOW: adsan https://adsan.dev/social.org

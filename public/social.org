@@ -6,6 +6,7 @@
 #+FOLLOW: andros https://andros.dev/static/social.org
 #+FOLLOW: rossabaker https://rossabaker.com/social.org
 #+FOLLOW: omidmash https://omidmash.de/social.org
+#+FOLLOW: shom https://shom.dev/social.org
 #+FOLLOW: johnhame https://johnhame.link/social.org
 #+FOLLOW: eoin https://eoin.site/social.org
 #+FOLLOW: adsan https://adsan.dev/social.org
@@ -75,3 +76,51 @@ Also I'm rewatching Mr.Robot :D
 :END:
 
 Thanks a lot for mentioning! Super excited with this amazing project
+**
+:PROPERTIES:
+:ID: 2025-09-02T23:32:52-0300
+:MOOD: 🎬
+:END:
+
+It's been quite a long time that I watched mr. robot and it's cool to observe I'm still getting surprised by the series direction, quite amazing choices.
+**
+:PROPERTIES:
+:ID: 2025-09-03T00:33:01-0300
+:REPLY_TO: https://cherryramatis.xyz/social.org#2025-09-02T23:32:52-0300
+:END:
+
+Replying is working now on the client! Alongside with some other bindings
+**
+:PROPERTIES:
+:ID: 2025-09-03T13:04:37-0300
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-03T12:12:57+0200
+:POLL_OPTION: Yes
+:END:
+**
+:PROPERTIES:
+:ID: 2025-09-03T14:30:21-0300
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-03T15:12:09+0200
+:END:
+
+The polls are really nice! congrats <3
+**
+:PROPERTIES:
+:ID: 2025-09-03T18:36:43-0300
+:MOOD: 📓
+:END:
+
+I'm looking for some french tech blogs and video channels to guide my learning of the language. Anyone has any tip please?
+
+hope yall a great day <3
+
+**
+:PROPERTIES:
+:ID: 2025-09-06T14:45:07-0300
+:LANG: 
+:TAGS: 
+:CLIENT: org-social.el
+:REPLY_TO: https://andros.dev/static/social.org#2025-09-03T08:07:45+0200
+:MOOD: 
+:END:
+
+Infinite configuration in neovim and terminal is probably worse I think lol

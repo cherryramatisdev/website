@@ -28,8 +28,11 @@ theme = ["github.com/panr/hugo-theme-terminal/v4"]
   [caches.images]
     dir = ':cacheDir/images'
 
-[markup.goldmark.renderer]
-  unsafe = true
+[markup]
+  [markup.highlight]
+    noclasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
 
 [params]
   subtitle = "My blog to write about personal and programming stuff, just that"

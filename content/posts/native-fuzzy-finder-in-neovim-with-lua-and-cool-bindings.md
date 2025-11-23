@@ -1,11 +1,17 @@
-+++
-title = "Native Fuzzy Finder in Neovim With Lua and Cool Bindings"
-author = ["Cherry Ramatis"]
-date = 2025-08-25
-tags = ["nvim", "fuzzy", "finder"]
-draft = false
-+++
-
+---
+title: Native Fuzzy Finder in Neovim With Lua and Cool Bindings
+author: Cherry Ramatis
+tags:
+  - tech
+  - nvim
+keywords:
+  - neovim
+  - nvim
+  - finder
+  - fuzzy
+draft: false
+date: 2025-08-25
+---
 Recently, I read a particular [blog post by yobibyte](https://yobibyte.github.io/vim.html) about a no-plugins approach to Neovim configuration, which stuck with me. I started to think more and more about how much stuff I really need for my config to suit my needs. Personally, the main reason why I resonate so much with a particular family of editors (Vim, Nvim, Kakoune, Emacs, etc.) is the ability to add as much stuff as you want, but at the same time the opportunity to remove as much bloat as possible—a little controversial, but if you think about it, it's the best scenario for customizability. I remember watching a video about the concept of a [PDE](https://www.youtube.com/watch?v=QMVIJhC9Veg) coined by a Neovim contributor called teej_dv, and it really stuck with me. These types of editors are more like an environment than just a product with a single goal.
 
 Well, this is the exact situation I'm currently in, trying to experiment with native functions from Neovim and writing tiny wrappers around them instead of using plugins that recreate the whole UX. I hope you find this particular "wrapper" useful for your workflow. :)

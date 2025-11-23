@@ -1,11 +1,14 @@
-+++
-title = "Quick Tip for the Week #1: Making Netrw More Usable"
-author = ["Cherry Ramatis"]
-date = 2025-08-27
-tags = ["nvim", "netrw", "file", "explorer"]
-draft = false
-+++
-
+---
+title: "Quick Tip for the Week #1: Making Netrw More Usable"
+author: Cherry Ramatis
+date: 2025-08-27
+tags:
+  - tech
+  - nvim
+  - netrw
+  - explorer
+draft: false
+---
 It's definitely not new to any Neovim user that we have **a lot** of file browser plugins, all over from the super minimalistic, like  [vim-dirvish,](https://github.com/justinmk/vim-dirvish) to the full-blown new experiences like [oil.nvim](https://github.com/stevearc/oil.nvim) or [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim). But what about netrw? You know, that file browser that comes default with (Neo)Vim and certainly has some weird behaviors? Recently I started thinking about what could be done to fix some of those weird behaviors and potentially remove yet another plugin in my crusade for minimalism. As always, I hope you find something useful for your own config. :)
 
 Most of the problems I personally faced were understanding how moving and copying work. I really like the concept of pressing `mf` to mark the files you want to operate on, but then it gets really cumbersome to set the target directory and operate the exact right settings to perform your action. We can improve this; it's absolutely possible to remove small extra steps to have a quite competent file browser to use on a day-to-day basis.

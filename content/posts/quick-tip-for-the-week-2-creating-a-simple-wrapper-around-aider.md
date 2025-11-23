@@ -1,11 +1,19 @@
-+++
-title = "Quick Tip for the Week #2: Creating a simple wrapper around aider (AI assistant)"
-author = ["Cherry Ramatis"]
-date = 2025-09-13
-tags = ["nvim", "ai", "tech"]
-draft = true
-+++
-
+---
+title: "Quick Tip for the Week #2: Creating a simple wrapper around aider (AI assistant)"
+author: Cherry Ramatis
+date: 2025-09-13
+tags:
+  - tech
+  - nvim
+  - ai
+  - agent
+keywords:
+  - neovim
+  - nvim
+  - ai
+  - agents
+draft: false
+---
 I'm not the biggest fan of AI usage while coding, but it's definitely changed the way we produce and thinkg about code, so I decided to give it a try and integrate into my workflow (tried copilot in the past and couldn't get used to the AI completion popping off all the time). After some months testing I settle myself with a working workflow: Just a chat assistant opened close to my editor which I can either use as an alternative to modern search engines when the query is too complex or to maintain a persistent conversation about possible solutions. I've being quite happy with that setup so far as it keeps me in control of the code that it's being shipped while also benefitting from that speed of using an LLM. For the chat integration I chose using the [aider chat](https://aider.chat/).
 
 As with all things we include in our workflow, I just used the simplest way that is opening a pane alongside my editor and running the `aider` command, but the more I used the more that familiar question began to rise - "Can this be automated? Can this be more efficient?" - And the quick question is: It absolutely can! Let's bring this to work inside neovim!

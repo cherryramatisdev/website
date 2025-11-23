@@ -1,11 +1,19 @@
-+++
-title = "Quick Tip for the Week #2: Improving native fuzzy finder in neovim"
-author = ["Cherry Ramatis"]
-date = 2025-09-14
-tags = ["nvim", "fuzzy", "finder"]
-draft = false
-+++
-
+---
+title: "Quick Tip for the Week #2: Improving native fuzzy finder in neovim"
+author: Cherry Ramatis
+date: 2025-09-14
+tags:
+  - tech
+  - nvim
+  - fuzzy
+  - finder
+keywords:
+  - neovim
+  - nvim
+  - fuzzy
+  - finder
+draft: false
+---
 > This post is a continuation to the original implementation, you can read at: <https://cherryramatis.xyz/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings/>
 
 After using the native fuzzy finder implementation everyday for almost a month now I can safely say it's quite great for my personal workflow, it works flawlessly and it's simple enough so I can extend easily. One thing though that is a bit annoying is how often the popup window updates (it updates each time you press a character), sometimes that much update add some flickering to the popup re-rendering. Luckily [Alessandro](mailto:martini97@protonmail.ch) contacted me with a better implementation that not only simplified a bit the code, but also added a debounce function to avoid that much update cycles.

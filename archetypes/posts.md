@@ -5,7 +5,7 @@ author: Cherry Ramatis
 tags:
 keywords:
 description:
-showFullContent: "false"
+showFullContent: false
 readingTime: "true"
 hideComments: "false"
 draft: "true"

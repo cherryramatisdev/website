@@ -124,3 +124,10 @@ hope yall a great day <3
 :END:
 
 Infinite configuration in neovim and terminal is probably worse I think lol
+**
+:PROPERTIES:
+:ID: 2025-09-20T12:55:56-0300
+:CLIENT: org-social.nvim
+:END:
+
+I think i need to have a separate parser for the org social format in a better language, lua is simple in all it's greatness (for the good and for the bad)

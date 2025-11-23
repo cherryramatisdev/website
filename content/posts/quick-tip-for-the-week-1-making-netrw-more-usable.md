@@ -5,8 +5,10 @@ date: 2025-08-27
 tags:
   - tech
   - nvim
-  - netrw
+keywords:
+  - nvim
   - explorer
+  - netrw
 draft: false
 ---
 It's definitely not new to any Neovim user that we have **a lot** of file browser plugins, all over from the super minimalistic, like  [vim-dirvish,](https://github.com/justinmk/vim-dirvish) to the full-blown new experiences like [oil.nvim](https://github.com/stevearc/oil.nvim) or [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim). But what about netrw? You know, that file browser that comes default with (Neo)Vim and certainly has some weird behaviors? Recently I started thinking about what could be done to fix some of those weird behaviors and potentially remove yet another plugin in my crusade for minimalism. As always, I hope you find something useful for your own config. :)

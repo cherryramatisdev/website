@@ -5,10 +5,7 @@ date: 2025-09-13
 tags:
   - tech
   - nvim
-  - ai
-  - agent
 keywords:
-  - neovim
   - nvim
   - ai
   - agents

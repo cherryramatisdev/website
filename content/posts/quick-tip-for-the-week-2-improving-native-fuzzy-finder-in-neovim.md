@@ -5,10 +5,7 @@ date: 2025-09-14
 tags:
   - tech
   - nvim
-  - fuzzy
-  - finder
 keywords:
-  - neovim
   - nvim
   - fuzzy
   - finder

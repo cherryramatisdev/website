@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "bf796db557d2cfd0",
+    "type": "split",
+    "children": [
+      {
+        "id": "924a28c5b48cf69e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "96be42eb5b431f94",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/posts/trying-to-review-the-lux-music-album-by-rosalia.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "trying-to-review-the-lux-music-album-by-rosalia"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ac645e90f84c74a0",
+    "type": "split",
+    "children": [
+      {
+        "id": "86f1e07587ef4971",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1eb7d338ec14820d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "9a54c71c000b55e2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "fddf6e8d85938615",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "76c28483082911a5",
+    "type": "split",
+    "children": [
+      {
+        "id": "0ac4e75835ce7547",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b41334d2e59a5be2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "content/posts/trying-to-review-the-lux-music-album-by-rosalia.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for trying-to-review-the-lux-music-album-by-rosalia"
+            }
+          },
+          {
+            "id": "951e2d8fdc801b32",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "content/posts/trying-to-review-the-lux-music-album-by-rosalia.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from trying-to-review-the-lux-music-album-by-rosalia"
+            }
+          },
+          {
+            "id": "0053e6cefc3dbd85",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "cbc23fb5e13081e0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "5ba827668ef8755a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "content/posts/trying-to-review-the-lux-music-album-by-rosalia.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of trying-to-review-the-lux-music-album-by-rosalia"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "96be42eb5b431f94",
+  "lastOpenFiles": [
+    "static/rosalia-lux-album-cover.jpeg",
+    "public/rosalia-lux-album-cover.jpeg",
+    "content/posts/trying-to-review-the-lux-music-album-by-rosalia.md",
+    "content/posts/native-fuzzy-finder-in-neovim-with-lua-and-cool-bindings.md",
+    "content/posts/hello-world.md",
+    "content/posts/a-breakdown-on-webdriverio-for-end-to-end-tests.md",
+    "content/posts/quick-tip-for-the-week-2-improving-native-fuzzy-finder-in-neovim.md",
+    "content/posts/quick-tip-for-the-week-2-creating-a-simple-wrapper-around-aider.md",
+    "content/posts/quick-tip-for-the-week-1-making-netrw-more-usable.md",
+    "public/tags/agent/page/1/index.html",
+    "public/tags/agent/page/1",
+    "public/tags/agent/page",
+    "public/tags/agent/index.html",
+    "public/tags/agent",
+    "public/tags/ai/page/1/index.html",
+    "public/tags/ai/page/1",
+    "public/tags/ai/page",
+    "public/tags/ai/index.html",
+    "public/tags/ai",
+    "archetypes/posts.md",
+    "archetypes/default.md",
+    "hugo.md"
+  ]
+}

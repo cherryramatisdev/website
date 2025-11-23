@@ -1,0 +1,19 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "keywords": "multitext",
+    "draft": "checkbox",
+    "hideComments": "checkbox",
+    "readingTime": "checkbox",
+    "showFullContent": "checkbox",
+    "date": "text",
+    "lt-language": "text",
+    "lt-picky": "checkbox",
+    "lt-autoCheck": "checkbox",
+    "lt-dictionary": "multitext",
+    "lt-disabledRules": "multitext",
+    "lt-disabledCategories": "multitext"
+  }
+}

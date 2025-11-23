@@ -1,0 +1,25 @@
+{
+  "serverUrl": "https://api.languagetool.org",
+  "autoCheckDelay": 3000,
+  "shouldAutoCheck": true,
+  "languageVariety": {
+    "en": "en-US",
+    "de": "de-DE",
+    "pt": "pt-PT",
+    "ca": "ca-ES"
+  },
+  "dictionary": [
+    "egregores",
+    "egregore",
+    "Ryōnen",
+    "Saudade",
+    "Memória",
+    "Carminho",
+    "Gensō"
+  ],
+  "syncDictionary": false,
+  "remoteDictionary": [],
+  "pickyMode": false,
+  "motherTongue": "pt",
+  "synonyms": "en"
+}

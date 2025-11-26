@@ -9,13 +9,13 @@
     "ca": "ca-ES"
   },
   "dictionary": [
-    "egregores",
-    "egregore",
-    "Ryōnen",
-    "Saudade",
-    "Memória",
     "Carminho",
-    "Gensō"
+    "egregore",
+    "egregores",
+    "Gensō",
+    "Memória",
+    "Ryōnen",
+    "Saudade"
   ],
   "syncDictionary": false,
   "remoteDictionary": [],

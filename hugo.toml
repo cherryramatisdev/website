@@ -37,7 +37,7 @@ theme = ["github.com/panr/hugo-theme-terminal/v4"]
 [params]
   subtitle = "My blog to write about personal and programming stuff, just that"
   contentTypeName = "posts"
-  showMenuItems = 2
+  showMenuItems = 3
   fullWidthTheme = true
   centerTheme = true
   readingTime = true
@@ -46,7 +46,7 @@ theme = ["github.com/panr/hugo-theme-terminal/v4"]
   [languages.en]
     title = "Cherry's Blog"
     subtitle = "My blog"
-    keywords = ""
+    keywords = "tech, music, other-things"
     copyright = ""
 
     [languages.en.params]
@@ -67,6 +67,10 @@ theme = ["github.com/panr/hugo-theme-terminal/v4"]
         identifier = "tags"
         name = "Tags"
         url = "/tags"
+      [[languages.en.menu.main]]
+        identifier = "recommendation-list"
+        name = "My recommendation list"
+        url = "/recommendation-list"
         
 [module]
   # this is needed when you fetch the theme as a submodule to your repo.
